@@ -1,5 +1,5 @@
 pipeline {
-	agent {label "linux"}
+	agent {label "windows"}
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -14,10 +14,10 @@ pipeline {
                 git credentialsId: 'github', url: 'https://github.com/mathewgeorge-agi/jenkins_test.git'   
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway clean package"   
+                //sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway clean package"   
 
                 // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
@@ -25,7 +25,7 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                    junit 'api-gateway/target/surefire-reports/*.xml'
-                    archiveArtifacts 'api-gateway/target/*.jar'
+                   archiveArtifacts 'api-gateway/target/*.jar'
                 }
             }
         }
