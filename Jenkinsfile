@@ -1,4 +1,3 @@
-properties[{piplelineTriggers}]
 pipeline {
     agent any
     tools {
