@@ -9,11 +9,11 @@ pipeline {
 
     stages {
 	stage('enable webhook'){
-	  	    steps {
-			    script { properties([pipelineTriggers([githubPush()])])
-				   }
-		    }
-	    } 
+	steps {
+	      script { properties([pipelineTriggers([githubPush()])])
+		     }
+		}
+	 } 
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
